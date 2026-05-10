@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Manuu Spaces Portfolio: Engineering Manifesto
 
-## Getting Started
+## Overview
+This portfolio is a precision-engineered showcase built for **Manuu Spaces**. It leverages a modern tech stack to deliver a cinematic, dark-luxury experience while maintaining executive software engineering standards.
 
-First, run the development server:
+## 🏗️ Architecture & Patterns
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. Composition Over Inheritance
+The project strictly follows the **React Composition Pattern**. Instead of complex class hierarchies or prop-drilling, UI elements are built as atomic, composable units. For example, the `ContainerScroll` and `PageTransition` components act as wrappers that inject behavior without polluting the business logic of the children.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Atomic Design (shadcn/ui style)
+Components are organized using **Atomic Design principles**:
+- **Atoms:** Basic building blocks like `LucideIcons`, typography tokens, and CSS variables.
+- **Molecules/Organisms:** Components like `VentureCard` and `Navbar`, which combine multiple atoms into complex, functional units.
+- **Templates:** Persistent layouts (`layout.tsx`) that manage global state and navigation.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. GStack Founder Mode Precision
+- **Pretext Layout Precision:** Typography uses mathematical `clamp()` functions to ensure a perfect visual rhythm across all viewports. There is no "AI Slop"—every pixel is a result of calculated intent.
+- **Selective Motion:** Framer Motion is used as a **strategic signal**. Animations are reserved for high-value conversion points to guide the user's eye without causing cognitive overload or browser "jank."
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Technology Stack
 
-## Learn More
+- **Next.js 14+ (App Router):** Leveraging React Server Components for optimal initial page loads and SEO.
+- **TypeScript:** Strict type safety across all components and utility functions.
+- **Tailwind CSS + CSS Modules:** A hybrid approach. Tailwind is used for structural utility, while Scoped CSS Modules handle complex "Liquid Glass" effects and cinematic lighting.
+- **Framer Motion:** Powering the 3D perspective transforms and scroll-driven reveals.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛡️ Security & Reliability (STRIDE)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Spoofing/Tampering:** All public inputs in the `Contact` form are treated as untrusted and sanitized.
+- **Information Disclosure:** The build system is configured to scrub sensitive metadata and `.env` exposure.
+- **Denial of Service:** Scroll-linked animations are optimized with `useScroll` and `useTransform` to avoid main-thread blocking, ensuring a smooth 60fps experience even on mobile devices.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📈 SEO & Marketing Strategy
+The site is built to be "found." Name consistency for **Manuu Spaces** is strictly maintained across title tags, meta descriptions, and semantic headings (`h1`, `h2`) to dominate local and international search results.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*Engineering Lead: Gemini CLI*  
+*Rigor Level: Maximum*

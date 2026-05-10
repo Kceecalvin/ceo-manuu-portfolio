@@ -1,0 +1,143 @@
+.about {
+  background-color: var(--bg-primary);
+}
+
+.header {
+  padding: 10rem 0 6rem;
+  background: linear-gradient(rgba(5, 5, 16, 0.9), rgba(5, 5, 16, 1)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-blue);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-size: var(--font-h1);
+  letter-spacing: -0.04em;
+}
+
+.title span {
+  color: var(--accent-pink);
+}
+
+.content {
+  padding: var(--section-padding) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8rem;
+  align-items: start;
+}
+
+.sectionHeading {
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-blue);
+  margin-bottom: 2.5rem;
+  font-family: 'Jost', sans-serif;
+  font-weight: 700;
+}
+
+.textStack p {
+  font-size: var(--font-body);
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.textStack strong {
+  color: white;
+  font-weight: 600;
+}
+
+.quoteCard {
+  margin-top: 4rem;
+  padding: 3rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  position: relative;
+  box-shadow: -4px 0 0 0 var(--accent-pink); /* Subtler accent */
+}
+
+.quoteText {
+  font-family: 'Bodoni Moda', serif;
+  font-size: 1.75rem;
+  font-style: italic;
+  color: white;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+}
+
+.quoteAuthor {
+  display: block;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-pink);
+  font-weight: 700;
+}
+
+.highlightText {
+  font-size: 1.5rem;
+  color: white;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  font-family: 'Bodoni Moda', serif;
+}
+
+.signatureSection {
+  padding: 0 0 var(--section-padding);
+}
+
+.signatureBox {
+  text-align: center;
+  padding: 6rem;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.signatureLabel {
+  display: block;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--accent-blue);
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.signatureText {
+  font-size: 2.5rem;
+  line-height: 1.3;
+}
+
+.signatureText span {
+  color: var(--accent-blue);
+  text-shadow: 0 0 20px var(--accent-blue-glow);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .signatureBox {
+    padding: 3rem;
+  }
+}
