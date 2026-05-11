@@ -21,31 +21,31 @@ export function HeroSection() {
   return (
     <section 
       ref={containerRef}
-      className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden bg-black"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-32 px-6 overflow-hidden bg-black"
     >
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
           alt="Business Background"
           fill
-          className="object-cover opacity-20 grayscale"
+          className="object-cover opacity-20 grayscale sm:opacity-30"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-90 sm:opacity-80" />
       </div>
 
-      <div className="absolute inset-0 scanline-overlay opacity-[0.03] z-1" />
+      <div className="absolute inset-0 scanline-overlay opacity-[0.02] sm:opacity-[0.03] z-1" />
       
       <motion.div 
         style={{ opacity, scale, y }}
-        className="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center"
+        className="max-w-7xl mx-auto w-full relative z-10 flex flex-col items-center text-center px-4"
       >
         {/* Clean Headline - Manuu Spaces */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[clamp(3.5rem,15vw,8rem)] font-black tracking-[-0.08em] uppercase leading-[0.85] mb-8 sm:mb-12 max-w-[10ch] text-center"
+          className="text-[clamp(4rem,18vw,8rem)] font-black tracking-[-0.08em] uppercase leading-[0.8] mb-6 sm:mb-12 max-w-[10ch] text-center"
         >
           <span className="text-gradient-grainy">Manuu</span> <br />
           <span className="text-white/5">Spaces</span>
@@ -56,10 +56,10 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 1 }}
-          className="text-[clamp(1rem,4vw,1.5rem)] text-text-secondary max-w-3xl mb-12 sm:mb-16 leading-relaxed font-medium px-6 text-center"
+          className="text-[clamp(1.1rem,5vw,1.5rem)] text-text-secondary max-w-2xl mb-12 sm:mb-16 leading-relaxed font-medium px-4 text-center opacity-80 sm:opacity-100"
         >
-          Advancing African enterprise through strategic investment, <br className="hidden md:block" /> 
-          operational excellence, and global capital integration.
+          Strategic investment and operational excellence <br className="hidden md:block" /> 
+          for high-performance African enterprises.
         </motion.p>
 
         {/* Action Vectors */}
@@ -67,18 +67,18 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full sm:w-auto px-10"
+          className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full sm:w-auto px-4 sm:px-10"
         >
           <Link
             href="/ventures"
-            className="group flex items-center justify-center gap-4 bg-white text-black w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all duration-500 shadow-[0_40px_80px_-20px_rgba(255,255,255,0.15)] hover:scale-[1.05] active:scale-[0.95] text-xs sm:text-base"
+            className="group flex items-center justify-center gap-4 bg-white text-black w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-[24px] font-black uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all duration-500 shadow-2xl text-[13px] sm:text-base"
           >
             Business Portfolio
             <ArrowRight size={18} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
             href="/contact"
-            className="flex items-center justify-center gap-3 glass-panel text-white/80 w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-white/5 hover:text-white transition-all border-white/10 hover:scale-[1.02] active:scale-[0.98] text-xs sm:text-base"
+            className="flex items-center justify-center gap-3 glass-panel text-white/80 w-full sm:w-auto px-10 sm:px-12 py-5 sm:py-6 rounded-[24px] font-black uppercase tracking-widest hover:bg-white/5 hover:text-white transition-all border-white/10 text-[13px] sm:text-base"
           >
             Partnership Inquiry
           </Link>

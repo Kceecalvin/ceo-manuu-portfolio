@@ -2,12 +2,12 @@
 
 @theme {
   /* Runlayer-inspired Neutrals (OKLCH) */
-  --color-obsidian: oklch(10% 0.01 255); /* Deepened for OLED */
-  --color-obsidian-light: oklch(15% 0.015 255);
-  --color-obsidian-glass: oklch(8% 0.012 255 / 35%);
+  --color-obsidian: #000000; /* Pure OLED Black for Mobile */
+  --color-obsidian-light: oklch(12% 0.01 255);
+  --color-obsidian-glass: rgba(0, 0, 0, 0.45);
   
   /* Precision Accents */
-  --color-electric-blue: oklch(60% 0.25 255); /* Vibrant but refined */
+  --color-electric-blue: oklch(60% 0.25 255);
   --color-soft-pink: oklch(70% 0.18 340);
   
   /* Text */
@@ -15,7 +15,7 @@
   --color-text-secondary: oklch(70% 0.01 255);
   --color-text-dim: oklch(40% 0.01 255);
 
-  /* Typography - Geist-like Inter */
+  /* Typography */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   
   /* Transition Curves */
@@ -30,14 +30,21 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    letter-spacing: -0.02em; /* Tighter for premium feel */
+    letter-spacing: -0.02em;
+    /* Native Mobile Feel */
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
     line-height: 0.9;
-    letter-spacing: -0.06em; /* Ultra-tight Runlayer tracking */
+    letter-spacing: -0.06em;
     font-weight: 900;
+    /* Prevent character clipping */
+    padding-top: 0.1em;
+    padding-bottom: 0.1em;
   }
 
   p {
@@ -52,9 +59,9 @@
 @utility glass-panel {
   background: var(--color-obsidian-glass);
   backdrop-filter: blur(24px);
-  border: 1px solid oklch(100% 0 0 / 6%);
+  border: 1px solid oklch(100% 0 0 / 8%);
   box-shadow: 
-    inset 0 1px 1px oklch(100% 0 0 / 8%),
+    inset 0 1px 1px oklch(100% 0 0 / 10%),
     0 32px 64px -16px oklch(0% 0 0 / 80%);
 }
 
@@ -83,8 +90,8 @@
 }
 
 @utility section-padding {
-  padding-top: clamp(10rem, 20vh, 20rem);
-  padding-bottom: clamp(10rem, 20vh, 20rem);
+  padding-top: clamp(6rem, 15vh, 20rem);
+  padding-bottom: clamp(6rem, 15vh, 20rem);
 }
 
 @utility text-gradient-grainy {

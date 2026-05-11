@@ -18,121 +18,146 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed z-[100] w-full top-4 sm:top-8 left-0 px-4 sm:px-6 pointer-events-none">
-      <motion.nav 
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[100%] sm:max-w-[fit-content] mx-auto flex items-center justify-between sm:justify-start gap-2 sm:gap-10 glass-panel px-4 sm:px-10 py-3 sm:py-4 rounded-full pointer-events-auto border-white/[0.08] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.4)]"
-      >
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
-          <motion.div 
-            whileHover={{ rotate: 5, scale: 1.05 }}
-            className="relative w-8 h-8 sm:w-12 sm:h-12 overflow-hidden rounded-md shrink-0"
-          >
+    <>
+      {/* Mobile Top Bar - Minimal Branding */}
+      <header className="fixed z-[100] w-full top-0 left-0 px-6 py-4 md:hidden pointer-events-none flex justify-between items-center">
+        <Link href="/" className="flex items-center gap-3 pointer-events-auto">
+          <div className="relative w-8 h-8 overflow-hidden rounded-md">
             <Image 
               src="/logo.png" 
-              alt="Manuu Spaces Logo" 
+              alt="Logo" 
               fill 
-              className="object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all duration-500"
+              className="object-contain grayscale brightness-200"
             />
-          </motion.div>
-          <span className="text-[14px] sm:text-[20px] font-black tracking-[-0.04em] text-white uppercase whitespace-nowrap hidden xs:block">
-            Manuu <span className="hidden sm:inline">Spaces</span>
-          </span>
+          </div>
+          <span className="text-[14px] font-black text-white uppercase tracking-tighter">Manuu</span>
         </Link>
+        <button 
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="w-10 h-10 rounded-full glass-panel flex items-center justify-center pointer-events-auto border-white/10"
+        >
+          {menuOpen ? <X size={18} /> : <Menu size={18} />}
+        </button>
+      </header>
 
-        {/* Precise Separator */}
-        <motion.div 
-          initial={{ height: 0 }}
-          animate={{ height: 24 }}
-          className="w-px bg-white/10 hidden md:block" 
-        />
-
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 + i * 0.1 }}
+      {/* Desktop Navigation */}
+      <header className="fixed z-[100] w-full top-8 left-0 px-6 pointer-events-none hidden md:block">
+        <motion.nav 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-[fit-content] mx-auto flex items-center gap-10 glass-panel px-10 py-4 rounded-full pointer-events-auto border-white/[0.08] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.4)]"
+        >
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-4 group">
+            <motion.div 
+              whileHover={{ rotate: 5, scale: 1.05 }}
+              className="relative w-12 h-12 overflow-hidden rounded-md"
             >
-              <Link
-                href={item.href}
-                className={`text-[11px] font-black uppercase tracking-[0.25em] transition-all duration-300 hover:text-white relative group ${
-                  pathname === item.href ? 'text-white' : 'text-white/40'
-                }`}
-              >
-                {item.label}
-                <span className={`absolute -bottom-2 left-0 w-0 h-[2px] bg-electric-blue transition-all duration-500 group-hover:w-full ${pathname === item.href ? 'w-full' : ''}`} />
-              </Link>
+              <Image 
+                src="/logo.png" 
+                alt="Manuu Spaces Logo" 
+                fill 
+                className="object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all duration-500"
+              />
             </motion.div>
-          ))}
-        </div>
-
-        {/* Action Button & Toggle */}
-        <div className="flex items-center gap-2 sm:gap-6">
-          <Link
-            href="/contact"
-            className="group flex items-center gap-2 text-white/40 hover:text-electric-blue transition-all duration-300 px-2 sm:px-0"
-          >
-            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] hidden sm:block">Connect</span>
-            <ArrowRight size={14} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform" />
+            <span className="text-[20px] font-black tracking-[-0.04em] text-white uppercase whitespace-nowrap">
+              Manuu Spaces
+            </span>
           </Link>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white/40 hover:text-white transition-colors p-2"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </motion.nav>
+          <motion.div initial={{ height: 0 }} animate={{ height: 24 }} className="w-px bg-white/10" />
 
-      {/* Mobile Menu Overlay - Precise Runlayer Style */}
+          <div className="flex items-center gap-8">
+            {navItems.map((item, i) => (
+              <motion.div key={item.label} initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 + i * 0.1 }}>
+                <Link
+                  href={item.href}
+                  className={`text-[11px] font-black uppercase tracking-[0.25em] transition-all duration-300 hover:text-white relative group ${
+                    pathname === item.href ? 'text-white' : 'text-white/40'
+                  }`}
+                >
+                  {item.label}
+                  <span className={`absolute -bottom-2 left-0 w-0 h-[2px] bg-electric-blue transition-all duration-500 group-hover:w-full ${pathname === item.href ? 'w-full' : ''}`} />
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} className="flex items-center gap-6">
+            <Link href="/contact" className="group flex items-center gap-2 text-white/40 hover:text-electric-blue transition-all duration-300">
+              <span className="text-[11px] font-black uppercase tracking-[0.25em]">Connect</span>
+              <ArrowRight size={14} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </motion.div>
+        </motion.nav>
+      </header>
+
+      {/* Mobile Bottom Navigation Pill - Native Feel */}
+      <nav className="fixed md:hidden bottom-8 left-1/2 -translate-x-1/2 z-[100] w-[90%] max-w-[400px]">
+        <div className="glass-panel px-6 py-4 rounded-[32px] border-white/10 flex justify-around items-center shadow-[0_20px_50px_-10px_rgba(0,0,0,0.5)]">
+          {navItems.map((item) => (
+            <Link 
+              key={item.label} 
+              href={item.href}
+              className={`flex flex-col items-center gap-1 transition-all duration-300 ${pathname === item.href ? 'text-electric-blue scale-110' : 'text-white/30'}`}
+            >
+              <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
+              {pathname === item.href && (
+                <motion.div layoutId="nav-dot" className="w-1 h-1 bg-electric-blue rounded-full" />
+              )}
+            </Link>
+          ))}
+          <Link 
+            href="/contact"
+            className={`flex flex-col items-center gap-1 transition-all duration-300 ${pathname === '/contact' ? 'text-soft-pink scale-110' : 'text-white/30'}`}
+          >
+            <span className="text-[10px] font-black uppercase tracking-widest">Connect</span>
+            {pathname === '/contact' && (
+              <motion.div layoutId="nav-dot" className="w-1 h-1 bg-soft-pink rounded-full" />
+            )}
+          </Link>
+        </div>
+      </nav>
+
+      {/* Mobile Full-Screen Menu Overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="absolute top-20 left-4 right-4 glass-panel rounded-3xl p-8 pointer-events-auto md:hidden border-white/[0.08]"
+            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            animate={{ opacity: 1, backdropFilter: "blur(32px)" }}
+            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
+            className="fixed inset-0 z-[90] bg-obsidian/90 flex flex-col justify-center px-12 md:hidden"
           >
-            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-10">
               {navItems.map((item, i) => (
                 <motion.div
                   key={item.label}
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
                 >
                   <Link
                     href={item.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-3xl font-black tracking-[-0.05em] uppercase text-white/40 hover:text-electric-blue transition-colors"
+                    className="text-6xl font-black tracking-tighter uppercase text-white/20 hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
                 </motion.div>
               ))}
-              
               <Link
                 href="/contact"
                 onClick={() => setMenuOpen(false)}
-                className="mt-4 flex items-center justify-center gap-3 bg-white text-black py-5 rounded-2xl font-black uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all shadow-[0_20px_40px_-10px_rgba(255,255,255,0.2)]"
+                className="text-6xl font-black tracking-tighter uppercase text-electric-blue"
               >
-                Connect With CEO
-                <ArrowRight size={18} strokeWidth={3} />
+                Connect.
               </Link>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 };
 

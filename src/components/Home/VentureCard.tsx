@@ -19,11 +19,14 @@ const VentureCard: React.FC<VentureCardProps> = ({ title, description, icon: Ico
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    // Only track mouse on desktop
+    if (window.matchMedia('(hover: hover)').matches) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
   };
 
   return (
@@ -32,7 +35,7 @@ const VentureCard: React.FC<VentureCardProps> = ({ title, description, icon: Ico
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onMouseMove={handleMouseMove}
-        className="relative h-[500px] rounded-[50px] overflow-hidden border border-white/5 bg-white/[0.02] lg:hover:cursor-none group shadow-2xl"
+        className="relative h-full min-h-[400px] sm:h-[500px] rounded-[32px] sm:rounded-[50px] overflow-hidden border border-white/5 bg-white/[0.02] lg:hover:cursor-none group shadow-2xl"
       >
         {/* Runlayer Masking Detail */}
         <div className="absolute inset-0 z-0 pointer-events-none shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]" />
