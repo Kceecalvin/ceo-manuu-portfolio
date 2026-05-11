@@ -19,11 +19,13 @@ const QuickIntro = () => {
   const textY = useTransform(scrollYProgress, [0, 1], ["20%", "-20%"]);
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    if (typeof window !== 'undefined' && window.matchMedia('(hover: hover)').matches) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
   };
 
   const introImage = "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop";
@@ -34,9 +36,9 @@ const QuickIntro = () => {
         <div className="grid md:grid-cols-12 gap-12 sm:gap-16 lg:gap-24 items-center">
           
           {/* Left: Interactive Parallax Image Module */}
-          <div className="md:col-span-6 relative order-2 md:order-1">
+          <div className="md:col-span-6 relative order-2 md:order-1 hardware-accelerated">
             <motion.div
-              style={{ y: imageY }}
+              style={{ y: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : imageY }}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onMouseMove={handleMouseMove}
@@ -88,8 +90,8 @@ const QuickIntro = () => {
           </div>
 
           {/* Right: Brand Statement & Stats */}
-          <div className="md:col-span-6 order-1 md:order-2">
-            <motion.div style={{ y: textY }}>
+          <div className="md:col-span-6 order-1 md:order-2 hardware-accelerated">
+            <motion.div style={{ y: typeof window !== 'undefined' && window.innerWidth < 768 ? 0 : textY }}>
               <span className="text-soft-pink font-black text-[10px] uppercase tracking-[0.5em] mb-6 sm:mb-10 block underline decoration-2 underline-offset-8 decoration-soft-pink/20 uppercase">Strategic Approach</span>
               
               {/* Creative Text Animation Header */}
