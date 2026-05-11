@@ -100,7 +100,7 @@ const VentureCard: React.FC<VentureCardProps> = ({ title, description, icon: Ico
             
             <div className="pt-4 sm:pt-6 flex items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-electric-blue opacity-100 sm:opacity-0 group-hover:opacity-100 translate-y-0 sm:translate-y-6 group-hover:translate-y-0 transition-all duration-1000">
               Explore Division
-              <ArrowUpRight size={18} sm:size={20} strokeWidth={3} />
+              <ArrowUpRight size={18} strokeWidth={3} />
             </div>
           </div>
         </div>
