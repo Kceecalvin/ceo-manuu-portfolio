@@ -17,14 +17,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-obsidian py-24 border-t border-white/5 relative overflow-hidden">
+    <footer className="bg-obsidian py-16 sm:py-24 border-t border-white/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start">
           
           {/* Logo & Vision */}
-          <div className="md:col-span-6">
-            <Link href="/" className="flex items-center gap-4 group mb-8">
-              <div className="relative w-12 h-12 overflow-hidden rounded-md">
+          <div className="md:col-span-6 text-center md:text-left">
+            <Link href="/" className="flex items-center justify-center md:justify-start gap-4 group mb-6 sm:mb-8">
+              <div className="relative w-10 h-10 sm:w-12 sm:h-12 overflow-hidden rounded-md">
                 <Image 
                   src="/logo.png" 
                   alt="Manuu Spaces Logo" 
@@ -32,18 +32,18 @@ const Footer = () => {
                   className="object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all duration-500"
                 />
               </div>
-              <span className="text-2xl font-black tracking-[-0.04em] text-white uppercase">
+              <span className="text-xl sm:text-2xl font-black tracking-[-0.04em] text-white uppercase whitespace-nowrap">
                 Manuu Spaces
               </span>
             </Link>
-            <p className="text-xl text-text-secondary leading-relaxed max-w-sm font-medium">
+            <p className="text-base sm:text-xl text-text-secondary leading-relaxed max-w-sm mx-auto md:mx-0 font-medium">
               &quot;Advancing African enterprise through strategic operational excellence and global commercial integration.&quot;
             </p>
           </div>
 
           {/* Quick Links */}
-          <div className="md:col-span-3">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-8">Navigation</h4>
+          <div className="md:col-span-3 text-center md:text-left">
+            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-6 sm:mb-8 mt-8 md:mt-0">Navigation</h4>
             <div className="flex flex-col gap-4">
               {['Ventures', 'Seroxide', 'About', 'Contact'].map((link, i) => (
                 <motion.div
@@ -55,7 +55,7 @@ const Footer = () => {
                 >
                   <Link 
                     href={`/${link.toLowerCase()}`}
-                    className="text-sm font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors flex items-center gap-2 group"
+                    className="text-xs sm:text-sm font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors flex items-center justify-center md:justify-start gap-2 group"
                   >
                     {link}
                     <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
@@ -66,8 +66,8 @@ const Footer = () => {
           </div>
 
           {/* Connect */}
-          <div className="md:col-span-3">
-            <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-8">Connect</h4>
+          <div className="md:col-span-3 text-center md:text-left">
+            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-6 sm:mb-8 mt-8 md:mt-0">Connect</h4>
             <div className="flex flex-col gap-6">
               {socialLinks.map((social, i) => (
                 <motion.div
@@ -80,7 +80,7 @@ const Footer = () => {
                   <motion.a 
                     href={social.href}
                     whileHover={{ x: 5 }}
-                    className="flex items-center gap-4 text-white/40 hover:text-electric-blue transition-colors group"
+                    className="flex items-center justify-center md:justify-start gap-4 text-white/40 hover:text-electric-blue transition-colors group"
                   >
                     <motion.div 
                       whileHover={{ scale: 1.2, rotate: 10 }}
@@ -88,7 +88,7 @@ const Footer = () => {
                     >
                       {social.icon}
                     </motion.div>
-                    <span className="text-xs font-black uppercase tracking-widest">{social.label}</span>
+                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest">{social.label}</span>
                   </motion.a>
                 </motion.div>
               ))}
@@ -97,13 +97,13 @@ const Footer = () => {
         </div>
 
         {/* Legal & Copyright */}
-        <div className="mt-24 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40">
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-white/10">
+        <div className="mt-16 sm:mt-24 pt-8 sm:pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-center md:text-left">
+          <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.3em] text-white/10">
             &copy; {currentYear} MANUU SPACES // EXCELLENCE IS STANDARD
           </p>
-          <div className="flex gap-8">
-            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/5">Strategic Growth</span>
-            <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/5">All Rights Reserved</span>
+          <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
+            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] text-white/5">Strategic Growth</span>
+            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] text-white/5">All Rights Reserved</span>
           </div>
         </div>
       </div>

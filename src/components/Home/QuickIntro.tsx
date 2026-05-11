@@ -29,8 +29,8 @@ const QuickIntro = () => {
   const introImage = "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop";
 
   return (
-    <section ref={containerRef} className="section-padding bg-transparent relative overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section ref={containerRef} className="section-padding bg-transparent relative overflow-visible px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid md:grid-cols-12 gap-12 sm:gap-16 lg:gap-24 items-center">
           
           {/* Left: Interactive Parallax Image Module */}
@@ -40,7 +40,7 @@ const QuickIntro = () => {
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
               onMouseMove={handleMouseMove}
-              className="relative aspect-square sm:aspect-[4/5] rounded-[40px] sm:rounded-[60px] overflow-hidden border border-white/10 glass-panel shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] cursor-none group"
+              className="relative aspect-square sm:aspect-[4/5] rounded-[40px] sm:rounded-[60px] overflow-hidden border border-white/10 glass-panel shadow-[0_40px_100px_-20px_rgba(0,0,0,0.8)] sm:cursor-none group"
             >
               <Image 
                 src={introImage}
@@ -93,7 +93,7 @@ const QuickIntro = () => {
               <span className="text-soft-pink font-black text-[10px] uppercase tracking-[0.5em] mb-6 sm:mb-10 block underline decoration-2 underline-offset-8 decoration-soft-pink/20 uppercase">Strategic Approach</span>
               
               {/* Creative Text Animation Header */}
-              <h2 className="text-5xl sm:text-7xl font-black uppercase tracking-[-0.07em] leading-[1.2] mb-8 sm:mb-12 text-white overflow-visible pt-16">
+              <h2 className="text-4xl sm:text-7xl font-black uppercase tracking-[-0.07em] leading-[1.1] mb-8 sm:mb-12 text-white overflow-visible pt-10 sm:pt-16">
                 <motion.span 
                   initial={{ y: "100%", opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}

@@ -83,24 +83,24 @@ const VentureCard: React.FC<VentureCardProps> = ({ title, description, icon: Ico
         </AnimatePresence>
 
         {/* Content Layer - Professional & Minimal */}
-        <div className="relative z-10 h-full flex flex-col justify-end p-12">
-          <div className="space-y-6">
+        <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-12">
+          <div className="space-y-4 sm:space-y-6">
             <div className="overflow-hidden">
               <motion.h3 
                 animate={isHovered ? { y: 0 } : { y: 0 }}
-                className="text-5xl font-black uppercase tracking-[-0.07em] text-white"
+                className="text-3xl sm:text-5xl font-black uppercase tracking-[-0.07em] text-white"
               >
                 {title}<span className="text-electric-blue">.</span>
               </motion.h3>
             </div>
             
-            <p className="text-lg text-text-secondary leading-relaxed font-medium max-w-[320px] opacity-40 group-hover:opacity-100 transition-opacity duration-700">
+            <p className="text-base sm:text-lg text-text-secondary leading-relaxed font-medium max-w-[320px] opacity-60 sm:opacity-40 group-hover:opacity-100 transition-opacity duration-700">
               {description}
             </p>
             
-            <div className="pt-6 flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.4em] text-electric-blue opacity-0 group-hover:opacity-100 translate-y-6 group-hover:translate-y-0 transition-all duration-1000">
+            <div className="pt-4 sm:pt-6 flex items-center gap-4 sm:gap-6 text-[10px] sm:text-[11px] font-black uppercase tracking-[0.4em] text-electric-blue opacity-100 sm:opacity-0 group-hover:opacity-100 translate-y-0 sm:translate-y-6 group-hover:translate-y-0 transition-all duration-1000">
               Explore Division
-              <ArrowUpRight size={20} strokeWidth={3} />
+              <ArrowUpRight size={18} sm:size={20} strokeWidth={3} />
             </div>
           </div>
         </div>

@@ -26,7 +26,7 @@ const FounderStrip = () => {
               transition={{ duration: 1 }}
             >
               <span className="text-electric-blue font-black text-[10px] uppercase tracking-[0.5em] mb-6 sm:mb-8 block underline decoration-2 underline-offset-8 decoration-electric-blue/20">Executive Profile</span>
-              <h2 className="text-5xl sm:text-[7vw] font-black uppercase tracking-[-0.05em] leading-[0.85] mb-8 sm:mb-12 text-white">
+              <h2 className="text-4xl sm:text-[7vw] font-black uppercase tracking-[-0.05em] leading-[0.85] mb-8 sm:mb-12 text-white">
                 Odhiambo <br />
                 <span className="text-white/10 italic">Manael</span> <br />
                 Okoth<span className="text-electric-blue">.</span>
@@ -38,7 +38,7 @@ const FounderStrip = () => {
                 </p>
                 
                 <div className="p-6 sm:p-8 border-l-2 border-electric-blue bg-white/5 rounded-r-3xl">
-                  <p className="text-white italic font-bold text-base sm:text-lg">
+                  <p className="text-white italic font-bold text-base sm:text-lg leading-relaxed">
                     &quot;We don&apos;t just build businesses; we design high-performance systems that thrive in the global marketplace.&quot;
                   </p>
                 </div>

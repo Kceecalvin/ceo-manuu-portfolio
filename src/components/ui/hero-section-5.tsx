@@ -45,7 +45,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[18vw] sm:text-[14vw] lg:text-[12vw] font-black tracking-[-0.08em] uppercase leading-[0.8] mb-12 max-w-[10ch]"
+          className="text-[clamp(3.5rem,15vw,8rem)] font-black tracking-[-0.08em] uppercase leading-[0.85] mb-8 sm:mb-12 max-w-[10ch] text-center"
         >
           <span className="text-gradient-grainy">Manuu</span> <br />
           <span className="text-white/5">Spaces</span>
@@ -56,7 +56,7 @@ export function HeroSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 1 }}
-          className="text-base sm:text-lg md:text-2xl text-text-secondary max-w-3xl mb-16 leading-relaxed font-medium px-4"
+          className="text-[clamp(1rem,4vw,1.5rem)] text-text-secondary max-w-3xl mb-12 sm:mb-16 leading-relaxed font-medium px-6 text-center"
         >
           Advancing African enterprise through strategic investment, <br className="hidden md:block" /> 
           operational excellence, and global capital integration.
@@ -67,18 +67,18 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 w-full sm:w-auto px-6"
+          className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8 w-full sm:w-auto px-10"
         >
           <Link
             href="/ventures"
-            className="group flex items-center justify-center gap-4 bg-white text-black w-full sm:w-auto px-10 sm:px-14 py-5 sm:py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all duration-500 shadow-[0_40px_80px_-20px_rgba(255,255,255,0.15)] hover:scale-[1.05] active:scale-[0.95]"
+            className="group flex items-center justify-center gap-4 bg-white text-black w-full sm:w-auto px-10 sm:px-14 py-4 sm:py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-electric-blue hover:text-white transition-all duration-500 shadow-[0_40px_80px_-20px_rgba(255,255,255,0.15)] hover:scale-[1.05] active:scale-[0.95] text-xs sm:text-base"
           >
             Business Portfolio
-            <ArrowRight size={20} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={18} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <Link
             href="/contact"
-            className="flex items-center justify-center gap-3 glass-panel text-white/80 w-full sm:w-auto px-10 sm:px-12 py-5 sm:py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-white/5 hover:text-white transition-all border-white/10 hover:scale-[1.02] active:scale-[0.98]"
+            className="flex items-center justify-center gap-3 glass-panel text-white/80 w-full sm:w-auto px-10 sm:px-12 py-4 sm:py-6 rounded-2xl font-black uppercase tracking-widest hover:bg-white/5 hover:text-white transition-all border-white/10 hover:scale-[1.02] active:scale-[0.98] text-xs sm:text-base"
           >
             Partnership Inquiry
           </Link>

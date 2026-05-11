@@ -18,18 +18,18 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="fixed z-[100] w-full top-8 left-0 px-6 pointer-events-none">
+    <header className="fixed z-[100] w-full top-4 sm:top-8 left-0 px-4 sm:px-6 pointer-events-none">
       <motion.nav 
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="max-w-[fit-content] mx-auto flex items-center gap-10 glass-panel px-10 py-4 rounded-full pointer-events-auto border-white/[0.08] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.4)]"
+        className="max-w-[100%] sm:max-w-[fit-content] mx-auto flex items-center justify-between sm:justify-start gap-2 sm:gap-10 glass-panel px-4 sm:px-10 py-3 sm:py-4 rounded-full pointer-events-auto border-white/[0.08] shadow-[0_15px_30px_-10px_rgba(0,0,0,0.4)]"
       >
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-4 group">
+        <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
           <motion.div 
             whileHover={{ rotate: 5, scale: 1.05 }}
-            className="relative w-12 h-12 overflow-hidden rounded-md"
+            className="relative w-8 h-8 sm:w-12 sm:h-12 overflow-hidden rounded-md shrink-0"
           >
             <Image 
               src="/logo.png" 
@@ -38,8 +38,8 @@ const Navbar = () => {
               className="object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all duration-500"
             />
           </motion.div>
-          <span className="text-[20px] font-black tracking-[-0.04em] text-white uppercase whitespace-nowrap">
-            Manuu Spaces
+          <span className="text-[14px] sm:text-[20px] font-black tracking-[-0.04em] text-white uppercase whitespace-nowrap hidden xs:block">
+            Manuu <span className="hidden sm:inline">Spaces</span>
           </span>
         </Link>
 
@@ -72,29 +72,24 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Action Button */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6 }}
-          className="flex items-center gap-6"
-        >
+        {/* Action Button & Toggle */}
+        <div className="flex items-center gap-2 sm:gap-6">
           <Link
             href="/contact"
-            className="group flex items-center gap-2 text-white/40 hover:text-electric-blue transition-all duration-300"
+            className="group flex items-center gap-2 text-white/40 hover:text-electric-blue transition-all duration-300 px-2 sm:px-0"
           >
-            <span className="text-[11px] font-black uppercase tracking-[0.25em]">Connect</span>
+            <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.25em] hidden sm:block">Connect</span>
             <ArrowRight size={14} strokeWidth={3} className="group-hover:translate-x-0.5 transition-transform" />
           </Link>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white/40 hover:text-white transition-colors"
+            className="md:hidden text-white/40 hover:text-white transition-colors p-2"
           >
-            {menuOpen ? <X size={18} /> : <Menu size={18} />}
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </motion.div>
+        </div>
       </motion.nav>
 
       {/* Mobile Menu Overlay - Precise Runlayer Style */}
@@ -105,9 +100,9 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="absolute top-20 left-6 right-6 glass-panel rounded-3xl p-10 pointer-events-auto md:hidden border-white/[0.08]"
+            className="absolute top-20 left-4 right-4 glass-panel rounded-3xl p-8 pointer-events-auto md:hidden border-white/[0.08]"
           >
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-6">
               {navItems.map((item, i) => (
                 <motion.div
                   key={item.label}
@@ -118,7 +113,7 @@ const Navbar = () => {
                   <Link
                     href={item.href}
                     onClick={() => setMenuOpen(false)}
-                    className="text-4xl font-black tracking-[-0.05em] uppercase text-white/40 hover:text-electric-blue transition-colors"
+                    className="text-3xl font-black tracking-[-0.05em] uppercase text-white/40 hover:text-electric-blue transition-colors"
                   >
                     {item.label}
                   </Link>
