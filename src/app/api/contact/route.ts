@@ -1,46 +1,95 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
-
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import { validateBrief, briefText, briefHtml } from "@/lib/contact";
+export const runtime = "nodejs";
+const MAX_BODY = 16384;
 export async function POST(request: Request) {
+  const origin = request.headers.get("origin");
+  if (origin && origin !== new URL(request.url).origin)
+    return NextResponse.json(
+      { message: "Please send your brief from this website." },
+      { status: 403 },
+    );
+  if (
+    !request.headers
+      .get("content-type")
+      ?.toLowerCase()
+      .startsWith("application/json")
+  )
+    return NextResponse.json(
+      { message: "Send a JSON brief." },
+      { status: 415 },
+    );
+  let input: unknown;
   try {
-    const { name, email, message, subject } = await request.json();
-
-    // Using the previously configured Resend key
-    const resend = new Resend(process.env.RESEND_API_KEY);
-
-    const { data, error } = await resend.emails.send({
-      from: 'Manuu Spaces <hello@cal-dev.me>',
-      to: ['cal-dev@zohomail.com'],
-      subject: `[Portfolio] ${subject || 'New Connection'} from ${name}`,
-      replyTo: email,
-      text: `Name: ${name}\nEmail: ${email}\n\nVision Brief:\n${message}`,
-      html: `
-        <div style="font-family: sans-serif; background: #050510; color: white; padding: 40px; border-radius: 20px;">
-          <h2 style="color: #0044FF; text-transform: uppercase; letter-spacing: 2px;">New Strategic Connection</h2>
-          <p style="color: #A0A0B0;">A new inquiry has been received via the Manuu Spaces Portfolio.</p>
-          <hr style="border: 0.5px solid #222; margin: 30px 0;" />
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Channel:</strong> ${email}</p>
-          <p><strong>Inquiry Vector:</strong> ${subject}</p>
-          <p><strong>The Brief:</strong></p>
-          <p style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; color: #eee;">
-            ${message.replace(/\n/g, '<br>')}
-          </p>
-        </div>
-      `,
-    });
-
-    if (error) {
-      console.error('Resend Error:', error);
-      return NextResponse.json({ message: 'Failed to send brief', error: error.message }, { status: 500 });
+    const reader = request.body?.getReader();
+    if (!reader)
+      return NextResponse.json(
+        { message: "Please complete your brief." },
+        { status: 400 },
+      );
+    const chunks: Uint8Array[] = [];
+    let length = 0;
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      length += value.byteLength;
+      if (length > MAX_BODY) {
+        await reader.cancel();
+        return NextResponse.json(
+          { message: "Your brief is too long." },
+          { status: 413 },
+        );
+      }
+      chunks.push(value);
     }
-
-    return NextResponse.json({ message: 'Brief sent successfully', data }, { status: 200 });
-  } catch (error: any) {
-    console.error('Error in contact API:', error);
-    return NextResponse.json({ 
-      message: 'Network Error',
-      error: error.message 
-    }, { status: 500 });
+    const body = new Uint8Array(length);
+    let offset = 0;
+    for (const chunk of chunks) {
+      body.set(chunk, offset);
+      offset += chunk.length;
+    }
+    input = JSON.parse(new TextDecoder().decode(body));
+  } catch {
+    return NextResponse.json(
+      { message: "Please send a valid brief." },
+      { status: 400 },
+    );
+  }
+  const result = validateBrief(input);
+  if (result.error)
+    return NextResponse.json({ message: result.error }, { status: 400 });
+  const { RESEND_API_KEY, CONTACT_FROM_EMAIL, CONTACT_TO_EMAIL } = process.env;
+  if (!RESEND_API_KEY || !CONTACT_FROM_EMAIL || !CONTACT_TO_EMAIL)
+    return NextResponse.json(
+      {
+        message:
+          "Sending is unavailable right now. Please use the email option on the contact page.",
+      },
+      { status: 503 },
+    );
+  const brief = result.brief!;
+  try {
+    const { data, error } = await new Resend(RESEND_API_KEY).emails.send({
+      from: CONTACT_FROM_EMAIL,
+      to: [CONTACT_TO_EMAIL],
+      replyTo: brief.email,
+      subject: `[CEO Manuu] ${brief.subject} — ${brief.name}`,
+      text: briefText(brief),
+      html: briefHtml(brief),
+    });
+    if (error || !data?.id)
+      return NextResponse.json(
+        {
+          message: "Your message could not be sent. Please try email instead.",
+        },
+        { status: 502 },
+      );
+    return NextResponse.json({ message: "Your brief has been sent." });
+  } catch {
+    return NextResponse.json(
+      { message: "Your message could not be sent. Please try email instead." },
+      { status: 502 },
+    );
   }
 }

@@ -1,39 +1,70 @@
-# Manuu Spaces Portfolio: Engineering Manifesto
+# CEO Manuu — Manuu Spaces portfolio
 
-## Overview
-This portfolio is a precision-engineered showcase built for **Manuu Spaces**. It leverages a modern tech stack to deliver a cinematic, dark-luxury experience while maintaining executive software engineering standards.
+A personal founder portfolio connecting Manuu Spaces, Seroxide Entertainment and SeroTix. The design uses warm ivory, navy, blue, red and gold, with a dimensional brand composition and restrained Framer Motion interactions.
 
-## 🏗️ Architecture & Patterns
+## Run locally
 
-### 1. Composition Over Inheritance
-The project strictly follows the **React Composition Pattern**. Instead of complex class hierarchies or prop-drilling, UI elements are built as atomic, composable units. For example, the `ContainerScroll` and `PageTransition` components act as wrappers that inject behavior without polluting the business logic of the children.
+Use Node.js 22 or later.
 
-### 2. Atomic Design (shadcn/ui style)
-Components are organized using **Atomic Design principles**:
-- **Atoms:** Basic building blocks like `LucideIcons`, typography tokens, and CSS variables.
-- **Molecules/Organisms:** Components like `VentureCard` and `Navbar`, which combine multiple atoms into complex, functional units.
-- **Templates:** Persistent layouts (`layout.tsx`) that manage global state and navigation.
+```sh
+npm ci
+npm run dev -- --port 3030
+```
 
-### 3. GStack Founder Mode Precision
-- **Pretext Layout Precision:** Typography uses mathematical `clamp()` functions to ensure a perfect visual rhythm across all viewports. There is no "AI Slop"—every pixel is a result of calculated intent.
-- **Selective Motion:** Framer Motion is used as a **strategic signal**. Animations are reserved for high-value conversion points to guide the user's eye without causing cognitive overload or browser "jank."
+Open http://localhost:3030.
 
-## 🚀 Technology Stack
+```sh
+npm run lint
+npm test
+npm run build
+npm start -- --port 3030
+```
 
-- **Next.js 14+ (App Router):** Leveraging React Server Components for optimal initial page loads and SEO.
-- **TypeScript:** Strict type safety across all components and utility functions.
-- **Tailwind CSS + CSS Modules:** A hybrid approach. Tailwind is used for structural utility, while Scoped CSS Modules handle complex "Liquid Glass" effects and cinematic lighting.
-- **Framer Motion:** Powering the 3D perspective transforms and scroll-driven reveals.
+## Content and pages
 
-## 🛡️ Security & Reliability (STRIDE)
+- `src/lib/portfolio.ts` contains the founder details and all nine business areas from the original portfolio.
+- `/ventures` filters business areas; `/ventures/[slug]` supplies individual detail pages.
+- `/ventures#websites` showcases ten branded websites with real homepage captures; `/businesses/[slug]` serves each business experience from the same deployment.
+- `/seroxide` includes actual SeroTix screenshots and a keyboard-accessible product walkthrough.
+- `/contact?venture=automotive` preselects the relevant business area.
+- `/about` uses the founder's name from the original portfolio. The artwork is branding, not a stock person presented as the founder.
+- The former `/three` experiment redirects home.
 
-- **Spoofing/Tampering:** All public inputs in the `Contact` form are treated as untrusted and sanitized.
-- **Information Disclosure:** The build system is configured to scrub sensitive metadata and `.env` exposure.
-- **Denial of Service:** Scroll-linked animations are optimized with `useScroll` and `useTransform` to avoid main-thread blocking, ensuring a smooth 60fps experience even on mobile devices.
+Business descriptions express the original portfolio's focus and vision. Operating status, launch dates, staffing, customer results, pricing, credentials and testimonials must be confirmed before being added. No such proof has been invented. Yadis is excluded at the owner's request.
 
-## 📈 SEO & Marketing Strategy
-The site is built to be "found." Name consistency for **Manuu Spaces** is strictly maintained across title tags, meta descriptions, and semantic headings (`h1`, `h2`) to dominate local and international search results.
+## Contact delivery
 
----
-*Engineering Lead: Gemini CLI*  
-*Rigor Level: Maximum*
+The public address from the original portfolio is `info@manuuspaces.com`, configured in `src/lib/portfolio.ts`. Confirm ownership and mailbox availability before publishing.
+
+Without the three server-side email settings below, the form prepares a `mailto:` draft. It clearly asks the visitor to review and send through their email app; it does not claim a message was delivered.
+
+To enable direct delivery, create `.env.local` (never commit credentials):
+
+```dotenv
+RESEND_API_KEY=your_resend_key
+CONTACT_FROM_EMAIL="Manuu Spaces <hello@your-verified-domain>"
+CONTACT_TO_EMAIL=your_confirmed_inbox
+NEXT_PUBLIC_SITE_URL=https://your-portfolio-domain
+```
+
+Use a sender verified with Resend. The contact API validates input, enforces a 16 KB request limit, rejects cross-origin browser requests, uses a honeypot, escapes HTML email content, and returns success only after Resend accepts the message. Provider acceptance is not a guarantee of final inbox delivery. For a public launch, configure provider quotas or hosting-level rate limits according to expected traffic; there is no persistent application rate limiter.
+
+The destination is configured explicitly, replacing the old hardcoded developer inbox. Submitted visitor information is not logged by the application. No marketing subscription or automatic reply is created.
+
+## Visuals and accessibility
+
+Product screenshots in `public/images` were captured from SeroTix on 21 September 2026. They are previews, not embedded live apps. The squad image honestly shows its starting state. Product calls to action open the actual SeroTix site.
+
+Fonts are local subsets of Lato and Liberation Serif; licenses accompany them in `src/app/fonts`. No Google Fonts request is needed at build time. Motion respects the system's reduced-motion preference, content renders without waiting for animation, navigation has keyboard focus states, and product tabs support arrow/Home/End keys.
+
+SEO metadata, a generated sharing image, sitemap and robots route are included. The default site URL is the original repository's Vercel homepage; set `NEXT_PUBLIC_SITE_URL` when moving domains.
+
+## Deployment
+
+The repository is connected to the existing `ceo-manuu-portfolio` Vercel project. Publish the reviewed release to `main` to trigger its production build. The portfolio and all ten `/businesses/[slug]` pages use the same deployment; separate domains are optional. This does not alter or deploy the SeroTix application.
+
+Run lint, tests and a production build before publishing. After deployment, verify the public homepage, venture showcase, business pages and contact handoff. New business pages are labelled as brand concepts and accept enquiries; they do not advertise confirmed booking slots, inventory or operating locations. See `docs/business-websites.md` for route and content details.
+
+## Interactive exploration
+
+The homepage business explorer lets visitors inspect each of the nine areas. “Build with Manuu” provides three inquiry paths configured in `src/lib/collaborations.ts`; `/contact?intent=digital`, `/contact?intent=creative`, and `/contact?intent=business` carry those choices into the form. The SeroTix gallery supports enlarged previews, keyboard dismissal, and next/previous screens. All interactions respect reduced-motion preferences.

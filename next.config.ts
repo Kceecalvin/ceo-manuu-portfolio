@@ -1,18 +1,8 @@
 import type { NextConfig } from "next";
-
+import { dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 const nextConfig: NextConfig = {
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'ik.imagekit.io',
-      },
-    ],
-  },
-  };
-
+  turbopack: { root: dirname(fileURLToPath(import.meta.url)) },
+  devIndicators: false,
+};
 export default nextConfig;

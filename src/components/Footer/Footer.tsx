@@ -1,117 +1,59 @@
-'use client';
-
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Instagram, Linkedin, Twitter, Github } from 'lucide-react';
-
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
-  const socialLinks = [
-    { icon: <Linkedin size={18} />, label: 'LinkedIn', href: '#' },
-    { icon: <Instagram size={18} />, label: 'Instagram', href: '#' },
-    { icon: <Twitter size={18} />, label: 'Twitter', href: '#' },
-    { icon: <Github size={18} />, label: 'GitHub', href: '#' }
-  ];
-
+import Link from "next/link";
+import { ArrowUpRight, ArrowUp } from "lucide-react";
+import { founder } from "@/lib/portfolio";
+export default function Footer() {
   return (
-    <footer className="bg-obsidian py-16 sm:py-24 border-t border-white/5 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8 items-start">
-          
-          {/* Logo & Vision */}
-          <div className="md:col-span-6 text-center md:text-left">
-            <Link href="/" className="flex items-center justify-center md:justify-start gap-4 group mb-6 sm:mb-8">
-              <div className="relative w-10 h-10 sm:w-12 sm:h-12 overflow-hidden rounded-md">
-                <Image 
-                  src="/logo.png" 
-                  alt="Manuu Spaces Logo" 
-                  fill 
-                  className="object-contain grayscale brightness-200 group-hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-              <span className="text-xl sm:text-2xl font-black tracking-[-0.04em] text-white uppercase whitespace-nowrap">
-                Manuu Spaces
-              </span>
+    <footer className="site-footer">
+      <div className="shell">
+        <div className="footer-top">
+          <div>
+            <Link className="footer-wordmark" href="/">
+              CEO MANUU<span>✳</span>
             </Link>
-            <p className="text-base sm:text-xl text-text-secondary leading-relaxed max-w-sm mx-auto md:mx-0 font-medium">
-              &quot;Advancing African enterprise through strategic operational excellence and global commercial integration.&quot;
-            </p>
+            <p>Many possibilities. One connected vision.</p>
+            <span className="location">
+              <span className="status-dot" /> {founder.location} · Thinking
+              beyond borders
+            </span>
           </div>
-
-          {/* Quick Links */}
-          <div className="md:col-span-3 text-center md:text-left">
-            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-6 sm:mb-8 mt-8 md:mt-0">Navigation</h4>
-            <div className="flex flex-col gap-4">
-              {['Ventures', 'Seroxide', 'About', 'Contact'].map((link, i) => (
-                <motion.div
-                  key={link}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Link 
-                    href={`/${link.toLowerCase()}`}
-                    className="text-xs sm:text-sm font-black uppercase tracking-widest text-white/40 hover:text-white transition-colors flex items-center justify-center md:justify-start gap-2 group"
-                  >
-                    {link}
-                    <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
+          <div className="footer-links">
+            <span className="eyebrow">Explore</span>
+            <Link href="/ventures">
+              The ventures <ArrowUpRight aria-hidden="true" size={14} />
+            </Link>
+            <Link href="/about">
+              The founder <ArrowUpRight aria-hidden="true" size={14} />
+            </Link>
+            <Link href="/seroxide">
+              Seroxide & SeroTix <ArrowUpRight aria-hidden="true" size={14} />
+            </Link>
           </div>
-
-          {/* Connect */}
-          <div className="md:col-span-3 text-center md:text-left">
-            <h4 className="text-[9px] sm:text-[10px] font-black uppercase tracking-[0.4em] text-white/20 mb-6 sm:mb-8 mt-8 md:mt-0">Connect</h4>
-            <div className="flex flex-col gap-6">
-              {socialLinks.map((social, i) => (
-                <motion.div
-                  key={social.label}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 + i * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <motion.a 
-                    href={social.href}
-                    whileHover={{ x: 5 }}
-                    className="flex items-center justify-center md:justify-start gap-4 text-white/40 hover:text-electric-blue transition-colors group"
-                  >
-                    <motion.div 
-                      whileHover={{ scale: 1.2, rotate: 10 }}
-                      className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 group-hover:border-electric-blue/30 group-hover:bg-electric-blue/5 transition-colors"
-                    >
-                      {social.icon}
-                    </motion.div>
-                    <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest">{social.label}</span>
-                  </motion.a>
-                </motion.div>
-              ))}
-            </div>
+          <div className="footer-links">
+            <span className="eyebrow">Start something</span>
+            <Link href="/contact">
+              Work together <ArrowUpRight aria-hidden="true" size={14} />
+            </Link>
+            <a href={`mailto:${founder.email}`}>
+              {founder.email} <ArrowUpRight aria-hidden="true" size={14} />
+            </a>
+            <a
+              href="https://serotix.co.ke"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Explore SeroTix <ArrowUpRight aria-hidden="true" size={14} />
+              <span className="sr-only"> (opens in a new tab)</span>
+            </a>
           </div>
         </div>
-
-        {/* Legal & Copyright */}
-        <div className="mt-16 sm:mt-24 pt-8 sm:pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-white/40 text-center md:text-left">
-          <p className="text-[8px] sm:text-[10px] font-black uppercase tracking-[0.3em] text-white/10">
-            &copy; {currentYear} MANUU SPACES // EXCELLENCE IS STANDARD
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8">
-            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] text-white/5">Strategic Growth</span>
-            <span className="text-[8px] sm:text-[9px] font-black uppercase tracking-[0.2em] text-white/5">All Rights Reserved</span>
-          </div>
+        <div className="footer-bottom">
+          <span>© {new Date().getFullYear()} CEO Manuu · Manuu Spaces</span>
+          <span>Built with purpose. Made to connect.</span>
+          <a href="#top">
+            Back to top <ArrowUp aria-hidden="true" size={14} />
+          </a>
         </div>
       </div>
-
-      {/* Subtle Background Glow */}
-      <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-electric-blue/5 blur-[120px] rounded-full" />
     </footer>
   );
-};
-
-export default Footer;
+}
