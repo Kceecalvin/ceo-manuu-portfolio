@@ -1,5 +1,12 @@
 # Free email activation for ceomanuu.com
 
+## Current owner-approved setup — 22 October 2026
+
+The owner selected `manaelodhiambo584@gmail.com` as the temporary contact and support destination. The public founder address uses this Gmail inbox. Production `SUPPORT_MAILBOX` is set to the same address for email-draft mode. Visitors must review the draft and press Send in their own email app. This has no additional email-provider subscription cost. No custom-domain mailbox, automatic sending or automatic acknowledgement is activated by this change. Delivery and a human reply still require an owner acceptance check.
+
+The custom-domain proposal below is an optional future setup, not a requirement for the Gmail fallback.
+
+
 Owner requested a free email setup on 3 October 2026. Proposed provider: Zoho Mail's Forever Free custom-domain plan, subject to availability in the owner's signup data centre. Official pricing currently lists one domain, up to five users, 5 GB per user, and no IMAP/POP/ActiveSync. Use webmail or the Zoho app for human replies. Do not select a paid subscription or treat a trial as the requested free plan.
 
 Official signup: https://mail.zoho.com/signup?plan=free&type=org
@@ -24,7 +31,7 @@ At the last DNS check, ceomanuu.com had an A record of 216.198.79.1 and no MX or
 
 ## Website activation
 
-After the support mailbox is verified and working, configure `SUPPORT_MAILBOX=support@ceomanuu.com`. The support form then prepares a draft to that inbox, with no paid sending API needed. Customers review and send in their mail app; staff reply from Zoho. The current `/support` changes are still local and must be published when ready.
+After the support mailbox is verified and working, configure `SUPPORT_MAILBOX=support@ceomanuu.com`. The support form then prepares a draft to that inbox, with no paid sending API needed. Customers review and send in their mail app; staff reply from Zoho. The `/support` page is already published; a mailbox setting enables its email-draft mode after deployment.
 
 Automated sending and customer acknowledgements are a separate integration. The free mailbox does not by itself configure the website's sending API. Leave `SUPPORT_FROM_EMAIL`, sending credentials and direct-send verification unset until that setup is explicitly completed. Do not claim automatic replies or send unsolicited test messages.
 

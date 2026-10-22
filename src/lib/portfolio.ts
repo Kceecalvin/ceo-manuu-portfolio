@@ -3,7 +3,7 @@
 export const founder = {
   name: "Odhiambo Manael Okoth",
   publicName: "CEO Manuu",
-  email: "info@manuuspaces.com",
+  email: "manaelodhiambo584@gmail.com",
   location: "Nairobi, Kenya",
 };
 export const groups = [
