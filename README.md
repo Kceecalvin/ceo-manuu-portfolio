@@ -72,14 +72,13 @@ The homepage business explorer lets visitors inspect each of the nine areas. “
 ## Owner handover — 22 October 2026
 
 See `docs/handover-2026-10-22.md` for the current readiness register and operating
-instructions. The local working tree includes a support centre and customer
-email templates that are not published on the live site. Support remains
+instructions. Release `7fdb505` publishes the support centre and customer
+email templates through the existing Vercel production project. Support remains
 disabled until a working mailbox is configured; customer acknowledgements are
 templates only. No customer message is sent by the preview or test scripts.
 
 The handover copy updates Next.js and its matching ESLint configuration to
 16.3.8, refreshes affected image/source-map dependencies, corrects the contact
 origin check when the Node server normalises the request hostname, and uses
-the confirmed apex domain in generated site links. These changes require a
-reviewed deployment before they affect production. The source archive includes
-the full working tree, not just the last Git commit.
+the confirmed apex domain in generated site links. These changes are deployed;
+the live support route and apex sitemap were checked after publication.
