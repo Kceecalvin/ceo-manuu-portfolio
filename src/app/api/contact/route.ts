@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { validateBrief, briefText, briefHtml } from "@/lib/contact";
+import { validateBrief, briefText, briefHtml, isContactOriginAllowed } from "@/lib/contact";
 export const runtime = "nodejs";
 const MAX_BODY = 16384;
 export async function POST(request: Request) {
-  const origin = request.headers.get("origin");
-  if (origin && origin !== new URL(request.url).origin)
+  if (!isContactOriginAllowed(request))
     return NextResponse.json(
       { message: "Please send your brief from this website." },
       { status: 403 },

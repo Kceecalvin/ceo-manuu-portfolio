@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/",
     "/about",
     "/contact",
+    "/support",
     "/ventures",
     ...ventures.map(ventureHref),
     ...businesses.map(businessHref),

@@ -13,6 +13,15 @@ export type ContactBrief = {
   venture: string;
   message: string;
 };
+export function isContactOriginAllowed(request: Request): boolean {
+  const origin = request.headers.get("origin");
+  if (!origin) return true;
+  const url = new URL(request.url);
+  // The Node server can normalise request.url to localhost. Host retains the
+  // browser-facing hostname and port; do not trust arbitrary forwarded headers.
+  const host = request.headers.get("host") || url.host;
+  return origin === `${url.protocol}//${host}`;
+}
 export function validateBrief(
   input: unknown,
 ): { brief: ContactBrief; error?: never } | { error: string; brief?: never } {

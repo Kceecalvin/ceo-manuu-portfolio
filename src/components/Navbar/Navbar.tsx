@@ -9,6 +9,7 @@ const links = [
   { href: "/ventures", label: "Ventures" },
   { href: "/about", label: "The founder" },
   { href: "/seroxide", label: "Seroxide" },
+  { href: "/support", label: "Support" },
 ];
 export default function Navbar() {
   const pathname = usePathname();

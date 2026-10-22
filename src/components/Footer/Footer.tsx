@@ -33,6 +33,7 @@ export default function Footer() {
             <Link href="/contact">
               Work together <ArrowUpRight aria-hidden="true" size={14} />
             </Link>
+            <Link href="/support">Customer support <ArrowUpRight aria-hidden="true" size={14} /></Link>
             <a href={`mailto:${founder.email}`}>
               {founder.email} <ArrowUpRight aria-hidden="true" size={14} />
             </a>

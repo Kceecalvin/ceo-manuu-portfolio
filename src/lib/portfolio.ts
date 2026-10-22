@@ -192,4 +192,4 @@ export function ventureHref(v: Venture) {
   return v.slug === "seroxide" ? "/seroxide" : `/ventures/${v.slug}`;
 }
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://ceo-manuu-portfolio.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://ceomanuu.com";

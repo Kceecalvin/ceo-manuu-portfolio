@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { validateBrief, briefHtml, briefText } from "../src/lib/contact.ts";
+import { validateBrief, briefHtml, briefText, isContactOriginAllowed } from "../src/lib/contact.ts";
 const valid = {
   name: "Test Person",
   email: "test@example.com",
@@ -8,6 +8,21 @@ const valid = {
   venture: "Automotive",
   message: "I would like to discuss a project for next month.",
 };
+test("same-origin contact accepts the browser Host when Next normalises localhost", () => {
+  for (const [url, origin, host] of [
+    ["http://localhost:3031/api/contact", "http://127.0.0.1:3031", "127.0.0.1:3031"],
+    ["https://localhost/api/contact", "https://ceomanuu.com", "ceomanuu.com"],
+  ]) assert.equal(isContactOriginAllowed(new Request(url, { headers: { origin, host } })), true);
+});
+test("contact rejects foreign origins, wrong ports and spoofed forwarded hosts", () => {
+  for (const origin of ["https://evil.example", "http://ceomanuu.com", "https://ceomanuu.com:8080", "null"])
+    assert.equal(isContactOriginAllowed(new Request("https://localhost/api/contact", {
+      headers: { origin, host: "ceomanuu.com", "x-forwarded-host": "evil.example" },
+    })), false);
+  assert.equal(isContactOriginAllowed(new Request("https://ceomanuu.com/api/contact", {
+    headers: { origin: "https://ceomanuu.com" },
+  })), true);
+});
 test("accepts a valid brief and trims user input", () => {
   const result = validateBrief({ ...valid, name: "  Test Person  " });
   assert.equal(result.brief.name, "Test Person");

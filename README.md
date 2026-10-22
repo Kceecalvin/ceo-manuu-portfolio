@@ -57,7 +57,7 @@ Product screenshots in `public/images` were captured from SeroTix on 21 Septembe
 
 Fonts are local subsets of Lato and Liberation Serif; licenses accompany them in `src/app/fonts`. No Google Fonts request is needed at build time. Motion respects the system's reduced-motion preference, content renders without waiting for animation, navigation has keyboard focus states, and product tabs support arrow/Home/End keys.
 
-SEO metadata, a generated sharing image, sitemap and robots route are included. The default site URL is the original repository's Vercel homepage; set `NEXT_PUBLIC_SITE_URL` when moving domains.
+SEO metadata, a generated sharing image, sitemap and robots route are included. The default site URL is `https://ceomanuu.com`; keep `NEXT_PUBLIC_SITE_URL` set to that canonical address in production. The `www` DNS record and hosting redirect still need configuration.
 
 ## Deployment
 
@@ -68,3 +68,18 @@ Run lint, tests and a production build before publishing. After deployment, veri
 ## Interactive exploration
 
 The homepage business explorer lets visitors inspect each of the nine areas. “Build with Manuu” provides three inquiry paths configured in `src/lib/collaborations.ts`; `/contact?intent=digital`, `/contact?intent=creative`, and `/contact?intent=business` carry those choices into the form. The SeroTix gallery supports enlarged previews, keyboard dismissal, and next/previous screens. All interactions respect reduced-motion preferences.
+
+## Owner handover — 22 October 2026
+
+See `docs/handover-2026-10-22.md` for the current readiness register and operating
+instructions. The local working tree includes a support centre and customer
+email templates that are not published on the live site. Support remains
+disabled until a working mailbox is configured; customer acknowledgements are
+templates only. No customer message is sent by the preview or test scripts.
+
+The handover copy updates Next.js and its matching ESLint configuration to
+16.3.8, refreshes affected image/source-map dependencies, corrects the contact
+origin check when the Node server normalises the request hostname, and uses
+the confirmed apex domain in generated site links. These changes require a
+reviewed deployment before they affect production. The source archive includes
+the full working tree, not just the last Git commit.
